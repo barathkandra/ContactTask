@@ -38,6 +38,7 @@ class AddContactViewController: CommonViewController {
         super.viewDidLoad()
         self.setupView()
         self.tableViewSetup()
+        
         // Do any additional setup after loading the view.
     }
     
