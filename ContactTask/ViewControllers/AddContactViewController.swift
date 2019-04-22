@@ -186,6 +186,7 @@ extension AddContactViewController: UITableViewDelegate, UITableViewDataSource {
         if let createContactCell = tableView.dequeueReusableCell(withIdentifier: "contactDetails", for: indexPath) as? ContactsDetailsCell {
             createContactCell.contactDetailsProtocol = self
             createContactCell.assignDetails(placeholder: self.placeholders[indexPath.row], detail: self.contactDetails[indexPath.row], index: indexPath.row)
+            createContactCell.selectionStyle = .none
             return createContactCell
         }
         return UITableViewCell()

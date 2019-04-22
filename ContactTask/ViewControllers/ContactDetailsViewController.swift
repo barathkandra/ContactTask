@@ -31,7 +31,8 @@ class ContactDetailsViewController: CommonViewController, MFMessageComposeViewCo
         super.viewDidLoad()
         self.setupView()
         self.addingRightBarButton()
-        
+        self.tableViewSetup()
+
         favButton.setImage(UIImage(named: "starImage"), for: .selected)
         favButton.setImage(UIImage(named: "unStarImage"), for: .normal)
         // Do any additional setup after loading the view.
@@ -59,6 +60,7 @@ class ContactDetailsViewController: CommonViewController, MFMessageComposeViewCo
         self.detailsTableView.estimatedRowHeight = 150.0
         self.detailsTableView.delegate = self
         self.detailsTableView.dataSource = self
+
     }
     
     
@@ -79,8 +81,7 @@ class ContactDetailsViewController: CommonViewController, MFMessageComposeViewCo
                         if let profilePic = details.profilePic {
                             self.profilePic.downloadImage(url: BASE_URL + profilePic, downloadComplete: nil)
                         }
-                        
-                        self.tableViewSetup()
+                        self.detailsTableView.reloadData()
 
                     }
                     return
@@ -203,10 +204,10 @@ class ContactDetailsViewController: CommonViewController, MFMessageComposeViewCo
             cell.displayTextField.isUserInteractionEnabled = false
             if indexPath.row == 0 {
                 cell.titleLabel.text = "Mobile"
-                cell.displayTextField.text = self.detailsViewModel.contactDetails?.phoneNumber
+                cell.displayTextField.text = self.detailsViewModel.contactDetails?.phoneNumber ?? ""
             } else {
                 cell.titleLabel.text = "email"
-                 cell.displayTextField.text = self.detailsViewModel.contactDetails?.email
+                 cell.displayTextField.text = self.detailsViewModel.contactDetails?.email ?? ""
             }
             cell.selectionStyle = .none
             
